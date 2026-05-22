@@ -570,6 +570,7 @@ try-convert --project MiProyecto.csproj
 8. **`ConfigureAwait(false)`** en ASP.NET Core moderno → Ya no es necesario (.NET Core no tiene SynchronizationContext).
 9. **`lock(this)`** o `lock(typeof(MiClase))` → Deadlocks ocultos. Usar `private readonly object _lock = new();`.
 10. **UI thread bloqueado** en WPF/MAUI → Usar async o `Task.Run` + `Dispatcher.Invoke`.
+11. **Lógica de negocio específica en templates/proyectos base** — Métodos como descuentos, precios, reglas de afiliación pertenecen a la aplicación concreta (ej. "LA OFRENDA"), no al template (NovaCore). El template solo debe contener infraestructura, utilidades compartidas y abstracciones genéricas. Cada aplicación que herede del template agrega su propia lógica de negocio. *Ver `references/nova-core-architecture.md` para el detalle completo de la arquitectura del proyecto.*
 
 ## Comandos Útiles
 
